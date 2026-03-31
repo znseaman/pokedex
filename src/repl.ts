@@ -1,5 +1,6 @@
 import { createInterface } from "node:readline";
 import { stdin, stdout } from "node:process";
+import { getCommands } from "./command.js";
 
 const prompt = "Pokedex > ";
 const rl = createInterface({
@@ -13,8 +14,11 @@ export function startREPL() {
 
   rl.on("line", (line: string) => {
     if (line) {
-      const cleanLine = cleanInput(line);
-      console.log(`Your command was: ${cleanLine[0]}`);
+      const [commandName] = cleanInput(line);
+      const command: any = getCommands()[commandName]?.callback;
+      if (command) {
+        command();
+      }
     }
 
     rl.prompt();
