@@ -1,15 +1,21 @@
 import { commandCatch } from "./command_catch.js";
 import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
+import { commandInspect } from "./command_inspect.js";
 import { commandExplore, commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
 import { CLICommand } from "./state.js";
 
 export function getCommands(): Record<string, CLICommand> {
   return {
+    inspect: {
+      name: "inspect",
+      description: "Inspect Pokemon based on pokemon name",
+      callback: commandInspect,
+    },
     catch: {
       name: "catch",
-      description: "Catch Pokemon base on pokemon name",
+      description: "Catch Pokemon based on pokemon name",
       callback: commandCatch,
     },
     explore: {
