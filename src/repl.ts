@@ -1,14 +1,14 @@
 import { State } from "./state.js";
 
-export function startREPL(state: State) {
+export async function startREPL(state: State) {
   state.rl.prompt();
 
-  state.rl.on("line", (line: string) => {
+  state.rl.on("line", async (line: string) => {
     if (line) {
       const [commandName] = cleanInput(line);
       const command: any = state.commands[commandName]?.callback;
       if (command) {
-        command(state);
+        await command(state);
       }
     }
 
