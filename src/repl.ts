@@ -5,11 +5,11 @@ export async function startREPL(state: State) {
 
   state.rl.on("line", async (line: string) => {
     if (line) {
-      const [commandName] = cleanInput(line);
+      const [commandName, ...args] = cleanInput(line);
       const command: any = state.commands[commandName]?.callback;
       if (command) {
         try {
-          await command(state);
+          await command(state, ...args);
         } catch (error) {
           console.log((error as Error).message);
         }
