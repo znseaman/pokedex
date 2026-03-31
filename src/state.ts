@@ -2,6 +2,7 @@ import { createInterface, type Interface } from "node:readline";
 import { stdin, stdout } from "node:process";
 import { getCommands } from "./command.js";
 import { PokeAPI } from "./poke_api.js";
+import { Cache } from "./poke_cache.js";
 
 export type CLICommand = {
   name: string;
@@ -16,6 +17,8 @@ export type State = {
   nextLocationsURL: string;
   previousLocationsURL: string;
   locationName: string;
+  baseExperience: number;
+  pokedex: Cache;
 };
 
 export function initState(): State {
@@ -31,6 +34,8 @@ export function initState(): State {
   const nextLocationsURL = "";
   const previousLocationsURL = "";
   const locationName = "";
+  const baseExperience = 100;
+  const pokedex = new Cache(Infinity);
 
   return {
     rl,
@@ -39,5 +44,7 @@ export function initState(): State {
     nextLocationsURL,
     previousLocationsURL,
     locationName,
+    baseExperience,
+    pokedex,
   };
 }

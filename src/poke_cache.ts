@@ -11,7 +11,7 @@ export class Cache {
 
   constructor(interval: number) {
     this.#interval = interval;
-    this.#startReapLoop();
+    if (interval != Infinity) this.#startReapLoop();
   }
 
   add<T>(key: string, val: T) {
