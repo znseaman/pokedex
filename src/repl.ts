@@ -8,7 +8,11 @@ export async function startREPL(state: State) {
       const [commandName] = cleanInput(line);
       const command: any = state.commands[commandName]?.callback;
       if (command) {
-        await command(state);
+        try {
+          await command(state);
+        } catch (error) {
+          console.log((error as Error).message);
+        }
       }
     }
 

@@ -13,6 +13,8 @@ export type State = {
   rl: Interface;
   commands: any;
   pokeAPI: PokeAPI;
+  nextLocationsURL: string;
+  previousLocationsURL: string;
 };
 
 export function initState(): State {
@@ -25,6 +27,8 @@ export function initState(): State {
 
   const commands = getCommands();
   const pokeAPI = new PokeAPI();
+  const nextLocationsURL = "";
+  const previousLocationsURL = "";
 
-  return { rl, commands, pokeAPI };
+  return { rl, commands, pokeAPI, nextLocationsURL, previousLocationsURL };
 }
