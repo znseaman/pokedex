@@ -21,7 +21,29 @@ test.concurrent.each([
 
   await new Promise((resolve) => setTimeout(resolve, interval * 2));
   const reaped = cache.get(key);
-  expect(reaped).toBe(undefined);
+  expect(reaped?.val).toBe(undefined);
 
   cache.stopReapLoop();
+});
+
+test.concurrent.each([
+  {
+    key: "pikachu",
+    val: {},
+    interval: Infinity,
+  },
+  {
+    key: "squirtle",
+    val: {},
+    interval: Infinity,
+  },
+])("Test getAllKeys when $interval ms", async ({ key, val, interval }) => {
+  const cache = new Cache(interval);
+
+  cache.add(key, val);
+  const cached = cache.get(key);
+  expect(cached?.val).toBe(val);
+
+  const keys = cache.getAllKeys();
+  expect(keys).toStrictEqual([key]);
 });

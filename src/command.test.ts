@@ -2,12 +2,35 @@ import { getCommands } from "./command.js";
 import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
 import { describe, expect, test } from "vitest";
-import { commandMap } from "./command_map.js";
+import { commandExplore, commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
+import { commandPokedex } from "./command_pokedex.js";
+import { commandInspect } from "./command_inspect.js";
+import { commandCatch } from "./command_catch.js";
 
 describe.each([
   {
     expected: {
+      pokedex: {
+        name: "pokedex",
+        description: "Display Pokemon in Pokedex",
+        callback: commandPokedex,
+      },
+      inspect: {
+        name: "inspect",
+        description: "Inspect Pokemon based on pokemon name",
+        callback: commandInspect,
+      },
+      catch: {
+        name: "catch",
+        description: "Catch Pokemon based on pokemon name",
+        callback: commandCatch,
+      },
+      explore: {
+        name: "explore",
+        description: "Display Pokemon based on location name",
+        callback: commandExplore,
+      },
       map: {
         name: "map",
         description: "Displays the names of 20 locations",

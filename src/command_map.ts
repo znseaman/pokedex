@@ -1,4 +1,3 @@
-import { Pokemon } from "./poke_api.js";
 import { State } from "./state.js";
 
 export async function commandMap(state: State) {
