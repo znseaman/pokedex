@@ -22,6 +22,16 @@ export class Cache {
     return this.#cache.get(key);
   }
 
+  getAllKeys<T>() {
+    let keys = [];
+    if (this.#interval === Infinity) {
+      for (let [key, _] of this.#cache) {
+        keys.push(key);
+      }
+    }
+    return keys;
+  }
+
   #reap() {
     let reapTime = Date.now() - this.#interval;
 
