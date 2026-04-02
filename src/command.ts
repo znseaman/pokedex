@@ -2,8 +2,7 @@ import { commandCatch } from "./command_catch.js";
 import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
 import { commandInspect } from "./command_inspect.js";
-import { commandExplore, commandMap } from "./command_map.js";
-import { commandMapb } from "./command_mapb.js";
+import { commandExplore, commandMap, commandMapb } from "./command_map.js";
 import { commandPokedex } from "./command_pokedex.js";
 import { CLICommand } from "./state.js";
 
