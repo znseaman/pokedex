@@ -3,7 +3,12 @@ import { State } from "./state.js";
 export async function startREPL(state: State) {
   state.rl.prompt();
 
-  state.rl.on("line", async (line: string) => {
+  const onLineEventHandler: any = await getOnLineEventHandler(state);
+  state.rl.on("line", onLineEventHandler);
+}
+
+export async function getOnLineEventHandler(state: State) {
+  return async function onLineEvent(line: string) {
     if (line) {
       const [commandName, ...args] = cleanInput(line);
       const command: any = state.commands[commandName]?.callback;
@@ -17,7 +22,7 @@ export async function startREPL(state: State) {
     }
 
     state.rl.prompt();
-  });
+  };
 }
 
 export function cleanInput(input: string): string[] {
